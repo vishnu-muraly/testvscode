@@ -25,9 +25,9 @@ router.delete('/post/:post/:comment', [jwtAuth, commentAuth], comments.destroy);
 module.exports = app => {
   app.use('/api', router);
 
-  app.get('*', (req, res) => {
-    res.status(404).json({ message: 'not found' });
-  });
+  // app.get('*', (req, res) => {
+  //   res.status(404).json({ message: 'not found' });
+  // });
 
   app.use((err, req, res, next) => {
     if (err.type === 'entity.parse.failed') {

@@ -19,4 +19,13 @@ passport.use(jwtStrategy);
 
 require('./routes')(app);
 
+//Serving client side build
+app.use(express.static('./client/build'));
+
+app.get('/*' , (req, res) => {
+      
+       res.sendFile(process.cwd() + '/client/build/index.html')
+})
+
+
 module.exports = app;
