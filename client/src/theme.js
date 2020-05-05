@@ -1,5 +1,6 @@
 const constants = {
   error: '#f5222d',
+  success: '#22bb33',
   vote: '#b6b6b6',
   upvote: '#f9920b',
   downvote: '#2e70ff'
