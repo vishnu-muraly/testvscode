@@ -40,7 +40,7 @@ exports.register = async (req, res, next) => {
   try {
     const { username, password, email } = req.body;
     const token = createVerificationToken(email)
-    const auth_link = `${req.protocol}://${req.headers.host}/verify/email?token=${token}`
+    const auth_link = `${req.protocol}://${req.hostname}/verify/email?token=${token}`
     console.log("LINK: ", auth_link)
     const verificationEmail = await sendVerification(email, auth_link)
     console.log("Verification email sent to: ", email, verificationEmail)
