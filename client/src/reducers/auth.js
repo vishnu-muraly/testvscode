@@ -22,7 +22,6 @@ export default (state = initialState, action) => {
     case SIGNUP_REQUEST:
     case LOGIN_REQUEST:
       return { ...state, loading: true };
-    case SIGNUP_SUCCESS:
     case LOGIN_SUCCESS:
       const user = jwtDecode(action.token).user;
       return {
@@ -31,6 +30,12 @@ export default (state = initialState, action) => {
         token: action.token,
         user
       };
+    
+    case SIGNUP_SUCCESS: 
+       return {
+         success: action.success,
+         loading: false
+       }
 
     case SIGNUP_ERROR:
     case LOGIN_ERROR:

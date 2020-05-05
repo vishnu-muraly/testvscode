@@ -3,13 +3,14 @@ import { compose } from 'redux';
 import { reduxForm } from 'redux-form';
 import withAuth from '../../util/withAuth';
 import { attemptLogin } from '../../actions/auth';
+import { showSuccessWithTimeout } from '../../actions/success';
 import LoginForm from './Component';
 
 const mapStateToProps = state => ({
   loading: state.auth.loading
 });
 
-const mapDispatchToProps = { attemptLogin };
+const mapDispatchToProps = { attemptLogin,showSuccessWithTimeout };
 
 const enhance = compose(
   reduxForm({ form: 'login' }),

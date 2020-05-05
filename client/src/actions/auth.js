@@ -23,14 +23,14 @@ export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const SIGNUP_ERROR = 'SIGNUP_ERROR';
 
 const signupRequest = { type: SIGNUP_REQUEST };
-const signupSuccess = token => ({ type: SIGNUP_SUCCESS, token });
+const signupSuccess = success => ({ type: SIGNUP_SUCCESS, success });
 const signupError = error => ({ type: SIGNUP_ERROR, error });
 
-export const attemptSignup = (username, password) => async dispatch => {
+export const attemptSignup = (username, password, email) => async dispatch => {
   dispatch(signupRequest);
   try {
-    const token = await signup(username, password);
-    dispatch(signupSuccess(token));
+    const success = await signup(username, password, email);
+    dispatch(signupSuccess(success));
   } catch (error) {
     dispatch(signupError(error));
   }

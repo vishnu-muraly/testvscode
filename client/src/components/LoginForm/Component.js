@@ -8,6 +8,7 @@ import SubmitButton from '../shared/form/SubmitButton';
 class LoginForm extends React.Component {
   componentDidMount() {
     this.redirectIfLoggedIn();
+    // this.props.showSuccessWithTimeout('Helloo !!')
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {

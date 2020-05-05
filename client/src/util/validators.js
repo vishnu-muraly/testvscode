@@ -14,6 +14,10 @@ export const checkValidChars = value =>
 export const checkIfTrimmed = value =>
   value.trim() === value ? undefined : 'cannot start or end with whitespace';
 
+  export const checkIfEmail = value =>
+  // eslint-disable-next-line
+  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value) ? undefined : 'invalid email';
+
 export const validUrl = value => {
   try {
     new URL(value);
@@ -27,6 +31,7 @@ const max = len => value => checkMaxLength(value, len);
 const min = len => value => checkMinLength(value, len);
 const validChars = value => checkValidChars(value);
 const trimmed = value => checkIfTrimmed(value);
+const validEmail = value => checkIfEmail(value)
 
 export const required = value => (value ? undefined : 'required');
 export const postType = value =>
@@ -35,6 +40,7 @@ export const postType = value =>
     : 'must be link or text post';
 export const usernameValidator = [required, max(32), validChars, trimmed];
 export const passwordValidator = [required, min(8), max(72)];
+export const emailValidator = [required, validEmail];
 export const titleValidator = value =>
   required(value) || checkMaxLength(value, 100);
 export const textPostValidator = value =>

@@ -6,6 +6,7 @@ import history from '../../util/history';
 import GlobalStyle from '../../globalStyle';
 import HeaderContainer from '../Header/Container';
 import ErrorNotificationContainer from '../ErrorNotification/Container';
+import Notification from '../Notification/Container'
 import LoginFormContainer from '../LoginForm/Container';
 import SignupFormContainer from '../SignupForm/Container';
 import CreatePostFormContainer from '../CreatePostForm/Container';
@@ -18,6 +19,7 @@ const App = props => (
         <GlobalStyle />
         <Route component={HeaderContainer} />
         <Route component={ErrorNotificationContainer} />
+        <Route component={Notification} />
         <Switch>
           <Route path='/login' component={LoginFormContainer} />
           <Route path='/signup' component={SignupFormContainer} />

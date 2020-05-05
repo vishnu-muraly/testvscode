@@ -72,9 +72,9 @@ export async function login (username, password) {
   return json.token;
 }
 
-export async function signup (username, password) {
-  const json = await methods.post('register', { username, password });
-  return json.token;
+export async function signup (username, password, email) {
+  const json = await methods.post('register', { username, password, email });
+  return json.success;
 }
 
 export async function getPosts (category) {

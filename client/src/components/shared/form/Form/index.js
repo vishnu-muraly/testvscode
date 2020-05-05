@@ -17,8 +17,8 @@ const StyledForm = styled.form`
 `;
 
 const Form = ({ className, wide, ...props }) => (
-  <FormWrapper className={className} wide={wide}>
-    <StyledForm {...props} />
+  <FormWrapper  className={className} wide={wide}>
+    <StyledForm {...props} id="signupForm" />
     {props.loading && <LoadingIndicatorSpinner />}
   </FormWrapper>
 );
