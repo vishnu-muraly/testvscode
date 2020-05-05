@@ -8,6 +8,12 @@ exports.createAuthToken = user => {
   });
 };
 
+exports.createVerificationToken = email => {
+  return jwt.sign({ email }, config.jwt.secret, {
+    expiresIn: '15m'
+  });
+};
+
 exports.login = (req, res, next) => {
   passport.authenticate('local', (err, user, info) => {
     if (err) return next(err);

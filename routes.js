@@ -3,6 +3,9 @@ const posts = require('./controllers/posts');
 const comments = require('./controllers/comments');
 const { jwtAuth, postAuth, commentAuth } = require('./auth');
 const router = require('express').Router();
+const jwt = require('jsonwebtoken')
+const config = require('./config');
+const User = require('./models/user');
 
 router.post('/login', users.validate(), users.login);
 router.post('/register', users.validate('register'), users.register);
@@ -28,6 +31,41 @@ module.exports = app => {
   // app.get('*', (req, res) => {
   //   res.status(404).json({ message: 'not found' });
   // });
+
+  app.get('/verify/email', async (req, res) => {
+       let {token} = req.query
+       console.log(req.headers)
+      try {
+        let payload =  jwt.verify(token , config.jwt.secret)
+      console.log(payload)
+         if(payload) {
+          let updatedUser =  await User.findOneAndUpdate({email: payload.email} , {$set: {isVerified: true}}, {new: true})
+
+          if(updatedUser) {
+            res.cookie('success', 'Verified Successfully!', {path: '/login',  })
+            return res.redirect('/login')
+          }
+          else {
+            res.cookie('error', 'Verification Failed. Please try again', {path: '/login',  })
+          return res.redirect('/login')
+          }
+
+         }
+
+         else{
+          res.cookie('error', 'Verification Failed. Please try again', {path: '/login', })
+          return res.redirect('/login')
+         }
+        
+      }
+
+      catch(err) {
+        console.log("Email verification Error: ", err)
+        res.cookie('error', 'Verification Failed. Please try again', {path: '/login', })
+        return res.redirect('/login')
+      }
+      
+})
 
   app.use((err, req, res, next) => {
     if (err.type === 'entity.parse.failed') {
