@@ -14,7 +14,6 @@ Asperitas is a full stack reddit clone that I wrote to learn more about Node.js,
 
 2. Install server dependencies
     ```bash
-    $ cd server
     $ npm install
     ```
 3. Install client dependencies
@@ -31,7 +30,6 @@ Asperitas is a full stack reddit clone that I wrote to learn more about Node.js,
     ```
 2. Start the server
     ```bash
-    $ cd server
     $ npm start
     ```
 3. Start the client
@@ -46,7 +44,6 @@ Asperitas is a full stack reddit clone that I wrote to learn more about Node.js,
 ### Server
 Make sure mongodb is running before testing the server.
 ```bash
-$ cd server
 $ npm test
 ```
 

@@ -34,10 +34,10 @@ module.exports = app => {
 
   app.get('/verify/email', async (req, res) => {
        let {token} = req.query
-       console.log(req.headers)
+     
       try {
         let payload =  jwt.verify(token , config.jwt.secret)
-      console.log(payload)
+    
          if(payload) {
           let updatedUser =  await User.findOneAndUpdate({email: payload.email} , {$set: {isVerified: true}}, {new: true})
 

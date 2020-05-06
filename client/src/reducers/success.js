@@ -12,7 +12,6 @@
         return action.success;
   
       case HIDE_SUCCESS:
-        console.log("REDUCER !! ", action)
         return null;
   
       default:

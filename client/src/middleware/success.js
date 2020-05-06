@@ -10,7 +10,6 @@
     next(action);
     switch (action.type) {
       case SIGNUP_SUCCESS:
-            console.log("MIDDLEWARE SIGNUP SUCCESS !! ", action)
           store.dispatch(showSuccessWithTimeout(action.success));
         break;
   
